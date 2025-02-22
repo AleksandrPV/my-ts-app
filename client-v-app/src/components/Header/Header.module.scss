@@ -1,0 +1,39 @@
+.header {
+    margin: 0 auto;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1280px;
+    padding: 1rem .5rem;
+    background-color: #213547;
+}
+
+.container {
+
+}
+
+.logo {
+    display: flex;
+    width: 120px;
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+    a:hover {
+        color: #1976d2;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
+}
+
+

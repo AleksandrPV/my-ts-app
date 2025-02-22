@@ -1,0 +1,24 @@
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.a {
+    color: white;
+    padding: 0 2em;
+    font-size: 1em;
+}
+
+
+
+
+
