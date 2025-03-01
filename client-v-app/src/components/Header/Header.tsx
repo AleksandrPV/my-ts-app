@@ -8,21 +8,35 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu.tsx";
 import Box from '@mui/material/Box';
 import {Button, Checkbox, FormControlLabel, TextField, Typography} from "@mui/material";
 import { Link } from 'react-router-dom';
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/store.ts";
 
 export default function Header() {
     const [isFormVisible, setFormVisible] = useState(false);
-
+    // const [isLoginVisible, setLoginVisible] = useState(true);
+    // const [isUserVisible, setUserVisible] = useState(false);
+    const {userName} = useSelector((state: RootState) => state.user);
     function toggleFormVisibility() {
         setFormVisible(!isFormVisible);
     }
 
+    // function toggleLoginVisibility() {
+    //     setLoginVisible(!isLoginVisible);
+    //     // setUserVisible(!isUserVisible);
+    // }
+    //
+    // if (userName !== 'no login') toggleLoginVisibility();
+
     const width = useResize();
+
 
     return (
         <header className={styles.header}>
             <div className={styles.logo}>Logo</div>
             { width > 800 && <Menu  /> }
             { width <= 800 && <BurgerMenu /> }
+
+            {/*{isLoginVisible && (*/}
             <div>
                 <div style={{ display: "flex", flexDirection: "row", justifyContent:"end" }}>
                     <Link to={"/Login"} style={{ padding: "0", }}>
@@ -46,12 +60,20 @@ export default function Header() {
                         }}>Регистрация</Button>
                     </Link>
                 </div>
-
-
             </div>
+            {/*)}*/}
+
+            {/*{isUserVisible && (*/}
+                <div>
+                    <Button variant="contained" disabled={false} sx={{
+                        marginBottom: '0'}}>{userName}
+                    </Button>
+                </div>
+            {/*)}*/}
+
             <div style={{position: 'relative'}}>
                 <Box className="m-0 p-0">
-                    <Button variant="contained" style={{width: "180px"}} onClick={toggleFormVisibility}>Заказать звонок</Button>
+                    <Button variant="contained" style={{width: "100px"}} onClick={toggleFormVisibility}> Форма </Button>
                 </Box>
 
                 {isFormVisible && (
@@ -84,6 +106,7 @@ export default function Header() {
                             paddingBottom: '10px',
                             textAlign: "left",
                             fontSize: '1em',}}/>
+
                         <Button variant="contained" sx={{
                             marginBottom: '10px'}}>Отправить</Button>
                     </Box>

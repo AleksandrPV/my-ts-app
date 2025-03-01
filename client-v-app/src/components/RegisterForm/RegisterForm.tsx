@@ -1,22 +1,32 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TextField, Button, Container, Box, Typography } from '@mui/material';
-import userRegistrationReducer from "../../store/slices/userRegistration.slice.tsx";
+import {useDispatch} from "react-redux";
+import {setUser} from "../../store/slices/userSlice.tsx";
+
+import { useNavigate } from 'react-router-dom';
+
 
 interface FormData {
-    username: string;
+    userName: string;
     email: string;
     password: string;
 }
 
 const RegisterForm: React.FC = () => {
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>();
-
+    const dispatch = useDispatch()
     const onSubmit = (data: FormData) => {
-        console.log(data);
-        userRegistrationReducer(data, 'USER/SET_USER');
-
+        console.log("Новый юзер: ", data);
+        dispatch(setUser(data));
     };
+
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('/'); // Переход на главную страницу
+    };
+
+
 
     return (
         <Container maxWidth="sm">
@@ -26,7 +36,7 @@ const RegisterForm: React.FC = () => {
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                     <Controller
-                        name="username"
+                        name="userName"
                         control={control}
                         defaultValue=""
                         rules={{ required: 'Имя пользователя обязательно' }}
@@ -36,8 +46,8 @@ const RegisterForm: React.FC = () => {
                                 margin="normal"
                                 fullWidth
                                 label="Имя пользователя"
-                                error={!!errors.username}
-                                helperText={errors.username ? errors.username.message : ''}
+                                error={!!errors.userName}
+                                helperText={errors.userName ? errors.userName.message : ''}
                             />
                         )}
                     />
@@ -85,6 +95,8 @@ const RegisterForm: React.FC = () => {
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
+                        onClick={handleClick}
+
                     >
                         Зарегистрироваться
                     </Button>

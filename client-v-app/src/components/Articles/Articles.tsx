@@ -30,7 +30,7 @@ export default function Articles() {
 
     return (
         <Container>
-            <Typography variant="h2" component="h1" gutterBottom>
+            <Typography variant="h3" component="h1" gutterBottom>
                 Статьи
             </Typography>
             <Grid container spacing={3}>

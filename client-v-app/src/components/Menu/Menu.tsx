@@ -5,9 +5,9 @@ import styles from './Menu.module.css';
 export default function Menu() {
     const MENU = [
         {title: "Главная", to: "/", key: uuid()},
-        {title: "Портфолио", to: "/portfolio", key: uuid()},
+        {title: "Анимация", to: "/animation", key: uuid()},
         {title: "Блог", to: "/blog", key: uuid()},
-        {title: "Контакты", to: "/contact", key: uuid()},
+        {title: "RTK Query", to: "/rtkQuery", key: uuid()},
     ]
     return (
         <nav className={styles.nav}>
